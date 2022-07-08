@@ -1,7 +1,7 @@
 // import model
 const { Schema, model } = require("mongoose");
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
     username: {
       type: String,
       unique: true,
@@ -26,18 +26,18 @@ const userSchema = new Schema({
             ref: "User",
         }
     ],
- // let mongoose model that virtuals is used!
+ // let mongoose model know that virtuals is used!
     toJSON: {
         virtuals: true,
         },
         id: false,
 });
 
-userSchema.virtual("friendCount").get(function () {
+UserSchema.virtual("friendCount").get(function () {
     return this.friends.length;
 });
 
 // create Model
-const User = model("User", userSchema);
+const User = model("User", UserSchema);
 // export
 module.exports = User;
