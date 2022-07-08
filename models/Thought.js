@@ -1,6 +1,6 @@
 // import Model and Schema
-const { Schema, model, trusted } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
+const { Schema, model, trusted } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const ReactionSchema = new Schema({
     reactionId: {
