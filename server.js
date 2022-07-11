@@ -11,7 +11,7 @@ app.use(require('./routes'));
 
 //tells mongoose which database we want to connect to.
 //127.0.0.1:27017: default port and ip address for localhost in mongodb
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/Social-Network-API-BE', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/socialnetworkapi', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
