@@ -5,12 +5,12 @@ const UserSchema = new Schema({
     username: {
       type: String,
       unique: true,
-      required: true,
+      required: 'Username required',
       trim: true,
     },
     email: {
       type: String,
-      required: true,
+      required: 'Email required',
       unique: true,
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/],
     },
@@ -20,18 +20,26 @@ const UserSchema = new Schema({
             ref: "Thought",
         }
     ],
-    thoughts: [
+    friends: [
         {
             type: Schema.Types.ObjectId,
             ref: "User",
         }
     ],
- // let mongoose model know that virtuals is used!
+
+},
+ 
+{ 
+    // let mongoose model know that virtuals is used!
     toJSON: {
-        virtuals: true,
-        },
-        id: false,
-});
+      virtuals: true,
+    },
+    id: false,
+}
+ 
+);
+
+
 
 UserSchema.virtual("friendCount").get(function () {
     return this.friends.length;
