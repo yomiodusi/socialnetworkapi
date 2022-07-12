@@ -2,21 +2,24 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3301;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
 app.use(require('./routes'));
 
-//tells mongoose which database we want to connect to.
-//127.0.0.1:27017: default port and ip address for localhost in mongodb
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/socialnetworkapi', {
+// mongoose Connect
+mongoose.connect(
+  // if found in .env, else use this
+  process.env.MONGODB_URI || `mongodb://localhost:27017/socialnetworkapi`,
+  {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-//Use this to log mongo queries being executed
+    useUnifiedTopology: true,
+  }
+);
+//   use this to log mongo queries being executed!
 mongoose.set('debug', true);
 
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));

@@ -49,6 +49,25 @@ const userController = {
       });
   },
 
+  
+  //   POST Add friend to user friend list
+  createFriend({ params }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      { $push: { friends: params.friendID } },
+      { new: true, runValidators: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          res.status(404).json({ message: "No User found with this id!" });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => res.json(err));
+  },
+
+
   //   PUT update User by id
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, {
@@ -87,26 +106,9 @@ const userController = {
       });
   },
 
-  //   POST Add friend to user friend list
-  createFriend({ params }, res) {
-    user.findOneAndUpdate(
-      { _id: params.userId },
-      { $push: { friends: params.friendID } },
-      { new: true, runValidators: true }
-    )
-      .then((dbUserData) => {
-        if (!dbUserData) {
-          res.status(404).json({ message: "No User found with this id!" });
-          return;
-        }
-        res.json(dbUserData);
-      })
-      .catch((err) => res.json(err));
-  },
-
   // DEL Remove friend from user friend list
   deleteFriend({ params }, res) {
-    user.findOneAndUpdate(
+    User.findOneAndUpdate(
       { _id: params.thoughtId },
       { $pull: { friends: { friendsId: params.friendId } } },
       { new: true, runValidators: true }
@@ -122,9 +124,5 @@ const userController = {
   },
 
 };
-
-
-
-
 
 module.exports = userController;
