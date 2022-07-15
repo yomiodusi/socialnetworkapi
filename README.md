@@ -21,16 +21,16 @@
   NoSql, Node, Express, Mongoose , Insomnia
 
   ## Test Commands
-  You run the project by typing node index in the terminal to run the serve then use insomnia to test the back end!
+  You run the project by typing node server in the terminal to run the serve then use insomnia to test the back end!
 
   ## Contributions to Project
-  Myself 
+  Myself . 
 
   ## Future Developments
   Project Complete
 
   ## Walkthrough Video that Demonstrates Functionality
-  https://www.youtube.com/watch?v=2ZbI6yIemNE
+  https://www.youtube.com/watch?v=Ssme84DMO2g
 
   ## Username
   https://github.com/yomiodusi
